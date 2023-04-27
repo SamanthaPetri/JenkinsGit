@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    environment {
+        DIRECTORY_PATH = "C:/Users/Sammy/OneDrive/Desktop/DIRECTORY_EXAMPLE"
+        TESTING_ENVIRONMENT = "C:/Users/Sammy/OneDrive/Desktop/TESTING_EXAMPLE"
+        PRODUCTION_ENVIRONMENT = "Sammy"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Fetch the source code from the directory path ${DIRECTORY_PATH}."
+                echo "Compile the code and generate any necessary artifacts"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Unit tests"
+                echo "Integration tests"
+            }
+        }
+        stage('Code Quality Check') {
+            steps {
+                echo "Check the quality of the code"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploy the application to a testing environment: ${TESTING_ENVIRONMENT}."
+            }
+        }
+        stage('Approval') {
+            steps {
+                sleep 10
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                echo "Deploy the code to ${PRODUCTION_ENVIRONMENT}."
+            }
+        }
+    }
+}
