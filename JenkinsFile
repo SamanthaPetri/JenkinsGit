@@ -1,41 +1,52 @@
 pipeline {
     agent any
     environment {
-        DIRECTORY_PATH = "C:/Users/Sammy/OneDrive/Desktop/DIRECTORY_EXAMPLE"
-        TESTING_ENVIRONMENT = "C:/Users/Sammy/OneDrive/Desktop/TESTING_EXAMPLE"
-        PRODUCTION_ENVIRONMENT = "Sammy"
+
     }
     stages {
         stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path ${DIRECTORY_PATH}."
-                echo "Compile the code and generate any necessary artifacts"
+                echo "Compile the code and generate any necessary artifacts."
+                echo "Can use code automation tool such as Maven. Maven is a tool primarily used for Java projects "
             }
         }
-        stage('Test') {
+        stage('Tests') {
             steps {
                 echo "Unit tests"
+                echo "Ensure code functions as expected"
                 echo "Integration tests"
+                echo "Ensure different components of application work as expected"
+                echo "Can use test automation tools such as Selenium and Cypress (for web app testing)"
             }
         }
-        stage('Code Quality Check') {
+        stage('Code Analysis') {
             steps {
-                echo "Check the quality of the code"
+                echo "Integrate code analysis tool to analyse the code and ensure it meets industry standards"
+                echo "Can use code analysis tool such as Coverity (used for C, C++, C#, Java and JavaScript)"
             }
         }
-        stage('Deploy') {
+        stage('Security Scan') {
             steps {
-                echo "Deploy the application to a testing environment: ${TESTING_ENVIRONMENT}."
+                echo "Perform a security scan on code using a tool to identify any vulnerabilities"
+                echo "Can use security tool such as AttackFlow (which maps data security risks)"
             }
         }
-        stage('Approval') {
+        stage('Deploy to Staging') {
             steps {
-                sleep 10
+                echo "Deploy the application to a staging server"
+                echo "Can use a staging server such as an AWS EC2 (Elastic Compute) instance"
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                echo "Run integration tests on staging environment to ensure app functions as expected in production-like environment"
+                echo "Can run integration tests in EC2 instance"
             }
         }
         stage('Deploy to Production') {
             steps {
-                echo "Deploy the code to ${PRODUCTION_ENVIRONMENT}."
+                echo "Deploy the application to a production server"
+                echo "Can deploy to an AWS EC2 instance"
             }
         }
     }
