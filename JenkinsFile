@@ -16,6 +16,20 @@ pipeline {
                 echo "Ensure different components of application work as expected"
                 echo "Can use test automation tools such as Selenium and Cypress (for web app testing)"
             }
+            post {
+                success {
+                    emailext to: "sammypetri96@gmail.com",
+                    subject: "Test status email",
+                    body: "Testing was succesful!",
+                    attachLog: true
+                }
+                failure {
+                    emailext to: "sammypetri96@gmail.com",
+                    subject: "Test status email",
+                    body: "Testing was unsuccesful",
+                    attachLog: true
+                }
+            }
         }
         stage('Code Analysis') {
             steps {
@@ -27,6 +41,20 @@ pipeline {
             steps {
                 echo "Perform a security scan on code using a tool to identify any vulnerabilities"
                 echo "Can use security tool such as AttackFlow (which maps data security risks)"
+            }
+            post {
+                success {
+                    emailext to: "sammypetri96@gmail.com",
+                    subject: "Security scan status email",
+                    body: "Security scan was succesful!",
+                    attachLog: true
+                }
+                failure {
+                    emailext to: "sammypetri96@gmail.com",
+                    subject: "Security scan status email",
+                    body: "Security scan was unsuccesful",
+                    attachLog: true
+                }
             }
         }
         stage('Deploy to Staging') {
